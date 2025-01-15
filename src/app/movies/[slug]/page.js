@@ -1,4 +1,5 @@
 import ImageCarousel from "@/components/carousel";
+import Similiars from "@/components/similars";
 import Image from "next/image";
 
 const getData = async(id)=>{
@@ -62,7 +63,7 @@ const MoviePage = async({params}) => {
         ))}
         </div>
         <ImageCarousel images={data.images}/>
-        
+        <Similiars id={id}/>
         </div>
     );
 }
