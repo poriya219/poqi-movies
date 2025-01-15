@@ -7,6 +7,19 @@ const getData = async(id)=>{
     return data.json();
 }
 
+export async function generateMetadata({ params }) {
+    // Fetch data from an API or database
+    const id = params.slug;
+    const res = await fetch(`https://moviesapi.ir/api/v1/movies/${id}`, {next: {revalidate: 86400}});
+    const data = await res.json();
+  
+    return {
+      title: data.title,
+      description: data.description,
+      metadataBase: new URL('https://poqi-movies.vercel.app/'),
+    };
+  }
+
 const MoviePage = async({params}) => {
     const param = await params;
     const id = param.slug;
